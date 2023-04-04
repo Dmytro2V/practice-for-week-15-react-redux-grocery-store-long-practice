@@ -6,10 +6,13 @@ import configureStore from './store';
 import './index.css';
 import App from './App';
 
+import { populateProduce } from './store/produce';
+
 const store = configureStore();
 // for testing only
 if (process.env.NODE_ENV !== "production") {
   window.store = store;
+  window.populateProduce = populateProduce;
 }
 
 function Root() {
