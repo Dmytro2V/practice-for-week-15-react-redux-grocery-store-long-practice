@@ -1,17 +1,22 @@
 import CartItem from './CartItem';
 import './Cart.css';
+import {useSelector} from 'react-redux'
 
 function Cart() {
-  const cart = {};
-  const produce = {};
+  const cart = useSelector(state => state.cart);
+  const produce = useSelector(state => state.produce);
+console.log('cart', cart, 'producelength', produce.length);
+console.log('Object.values(cart)', Object.values(cart));  
 
-  const cartItems = Object.values(cart)
-    .map(item => {
+//console.log('- ', Object.values(cart)[0].id);
+const cartItems = Object.values(cart)
+.map(item => {
       return {
         ...item,
         ...produce[item.id]
       };
     });
+    console.log('cartItems', cartItems);
 
   if (!cartItems || !cartItems.length) return (
     <div className="cart">
@@ -29,6 +34,7 @@ function Cart() {
 
   return (
     <div className="cart">
+      <div> here will be a cart-list</div>
       <ul>
         {cartItems.map(item => <CartItem key={item.id} item={item}/>)}
       </ul>

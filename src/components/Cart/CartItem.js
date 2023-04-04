@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 
-function CartItem({ item }) {
+function CartItem({item}) {
+  console.log('item from CartItem: ', item);
   const [count, setCount] = useState(item.count);
 
   useEffect(() => {
@@ -9,7 +10,8 @@ function CartItem({ item }) {
 
   return (
     <li className="cart-item">
-      <div className="cart-item-header">{item.name}</div>
+      <div className="cart-item-header">here item: {item.name}</div>
+
       <div className="cart-item-menu">
         <input
           type="number"
