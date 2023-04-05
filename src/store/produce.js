@@ -44,3 +44,6 @@ export function toggleLiked(id) {
     payload: id
   }
 }
+
+// selector functions:
+export const getAllProduce = (state) => Object.values(state.produce);

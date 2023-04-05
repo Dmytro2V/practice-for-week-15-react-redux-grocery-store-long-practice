@@ -21,6 +21,7 @@ function CartItem({item}) {
         <input
           type="number"
           value={count}
+          readOnly
         />
         <button
           className="cart-item-button"
