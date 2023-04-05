@@ -1,11 +1,14 @@
 const ADD_TO_CART_ON_ID = '/produce/ADD_TO_CART_ON_ID'
 const REMOVE_FROM_CART_ON_ID = '/cart/REMOVE_FROM_CART_ON_ID'
+const DECREASE_FROM_CART_ON_ID = '/cart/DECREASE_FROM_CART_ON_ID'
+const EMPTY_CART = '/cart/EMPTY_CART'
 
 export default function cardReducer(state = {}, action) {
   console.log('firing cartReducer for action: ' + action.type);
   console.log('state in cardReducer is', state);
+  
   switch (action.type) {
-    case ADD_TO_CART_ON_ID: {
+    case ADD_TO_CART_ON_ID: { // also using as increase
       const id = action.payload    
       const count = state[id]? state[id].count + 1: 1 
                 
@@ -18,6 +21,16 @@ export default function cardReducer(state = {}, action) {
       delete newState[id]
       return newState;
     }
+    case DECREASE_FROM_CART_ON_ID: {
+      const id = action.payload    
+      const count = state[id].count - 1 
+      const newState = {...state, [id]:{id:id, count:count}}      
+      return newState;      
+    }
+    case EMPTY_CART: {      
+      return {};
+    }
+
     default: 
       return state
   }
@@ -36,5 +49,19 @@ export const removeFromCartOnId = id =>{
   return { //action
     type: REMOVE_FROM_CART_ON_ID,
     payload: id
+  }
+}
+export const decreaseFromCartOnId = id =>{
+  console.log('creating action DECREASE_FROM_CART_ON_ID');
+  return { //action
+    type: DECREASE_FROM_CART_ON_ID,
+    payload: id
+  }
+}
+export const emptyCart = () =>{
+  console.log('creating action emptyCart');
+  return { //action
+    type: EMPTY_CART,
+    payload: null
   }
 }

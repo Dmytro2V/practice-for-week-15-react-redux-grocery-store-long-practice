@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import {useDispatch} from 'react-redux'
 import {removeFromCartOnId} from '../../store/cart'
+import {addToCartOnId} from '../../store/cart'
+import {decreaseFromCartOnId} from '../../store/cart'
 
 function CartItem({item}) {
   const dispatch= useDispatch()
@@ -22,11 +24,20 @@ function CartItem({item}) {
         />
         <button
           className="cart-item-button"
+          onClick={()=> dispatch(addToCartOnId(item.id))}
         >
           +
         </button>
         <button
           className="cart-item-button"
+          onClick={()=> {
+              dispatch(decreaseFromCartOnId(item.id))
+              console.log('COUNT', item.count);
+              if (item.count <= 1) { //<=1 not <1 because last dispatch not seen here
+                dispatch(removeFromCartOnId(item.id))
+              }
+            }
+          }
         >
           -
         </button>
