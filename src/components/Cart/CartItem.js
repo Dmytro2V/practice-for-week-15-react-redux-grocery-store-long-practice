@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react';
+import {useDispatch} from 'react-redux'
+import {removeFromCartOnId} from '../../store/cart'
 
 function CartItem({item}) {
+  const dispatch= useDispatch()
   console.log('item from CartItem: ', item);
   const [count, setCount] = useState(item.count);
 
@@ -29,6 +32,7 @@ function CartItem({item}) {
         </button>
         <button
           className="cart-item-button"
+          onClick={()=> dispatch(removeFromCartOnId(item.id))}
         >
           Remove
         </button>
