@@ -5,7 +5,7 @@ import {useSelector} from 'react-redux'
 function Cart() {
   const cart = useSelector(state => state.cart);
   const produce = useSelector(state => state.produce);
-console.log('cart', cart, 'producelength', produce.length);
+console.log('cart', cart, 'produce.length', Object.keys(produce).length);
 console.log('Object.values(cart)', Object.values(cart));  
 
 //console.log('- ', Object.values(cart)[0].id);
@@ -33,8 +33,7 @@ const cartItems = Object.values(cart)
   }
 
   return (
-    <div className="cart">
-      <div> here will be a cart-list</div>
+    <div className="cart">      
       <ul>
         {cartItems.map(item => <CartItem key={item.id} item={item}/>)}
       </ul>

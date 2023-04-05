@@ -5,6 +5,7 @@ const POPULATE = 'produce/POPULATE';
 // reducer
 export default function produceReducer(state = {}, action){
   console.log('firing produceReducer for action: ' + action.type);
+  
   switch (action.type) {
     case POPULATE:
       const newState = {}
